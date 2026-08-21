@@ -9,6 +9,12 @@ const loginSchema = z.object({
   password: z.string(),
 });
 
-export { signupSchema, loginSchema };
+const updatePassSchema = z.object({
+  currentPass: z.string(),
+  newPass: z.string().min(8, "password must be at least 8"),
+});
+
+export { signupSchema, loginSchema, updatePassSchema };
 export type SignupInput = z.infer<typeof signupSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
+export type UpdatePassInput = z.infer<typeof updatePassSchema>;

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npx eslint *)",
+      "Bash(node /tmp/claude-1000/-home-bara-afanah-Desktop-blog/87b2e8f4-7f58-4b38-a7b6-a3aa03f9b7ba/scratchpad/v6.js)",
+      "Bash(npx prettier *)",
+      "Bash(npx tsx *)",
+      "Bash(curl -s -D - -o /dev/null -X POST http://127.0.0.1:4599/auth/login -H 'Content-Type: application/json' -d '{\"username\":\"alice\"}')",
+      "Bash(pkill -f \"tsx __curlcheck\")"
+    ]
+  }
+}

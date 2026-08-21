@@ -73,7 +73,6 @@ const logout = catchAsync(
 const updatePass = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const { currentPass, newPass } = req.body;
-    if (!(currentPass && newPass)) throw new AppError("bad request", 400);
     if (!req.user) throw new AppError("unauthorized", 401);
     const user = await userModel.findById(req.user.id);
     if (!user) throw new AppError("unauthorized", 401);
