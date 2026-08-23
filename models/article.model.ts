@@ -38,14 +38,37 @@ async function findById(id: number): Promise<Article | undefined> {
   return result.rows[0];
 }
 
+type UpdateArticle = Partial<Pick<Article, "title" | "content">>;
+
 async function updateById(
   id: number,
-  article: Pick<Article, "title" | "content">,
+  article: UpdateArticle,
 ): Promise<Article | undefined> {
+  const allowedFields = ["title", "content"] as const;
+
+  const fields = allowedFields.filter((field) => article[field] !== undefined);
+
+  // Defensive check — الـ schema يفترض أنها تمنع هذا مسبقًا
+  if (fields.length === 0) {
+    return undefined;
+  }
+
+  const values = fields.map((field) => article[field]);
+
+  const setClause = fields
+    .map((field, index) => `${field} = $${index + 1}`)
+    .join(", ");
+
+  const idParameter = values.length + 1;
+
   const result = await pool.query<Article>(
-    "UPDATE articles SET title = $1, content = $2 WHERE id = $3 RETURNING *",
-    [article.title, article.content, id],
+    `UPDATE articles
+     SET ${setClause}
+     WHERE id = $${idParameter}
+     RETURNING *`,
+    [...values, id],
   );
+
   return result.rows[0];
 }
 

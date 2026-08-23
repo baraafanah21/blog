@@ -20,7 +20,7 @@ router.post(
   articleControl.createArticle,
 );
 
-router.put(
+router.patch(
   "/:id",
   authMiddleWare,
   authorize("editor", "admin"),

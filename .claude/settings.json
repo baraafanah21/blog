@@ -7,7 +7,18 @@
       "Bash(npx prettier *)",
       "Bash(npx tsx *)",
       "Bash(curl -s -D - -o /dev/null -X POST http://127.0.0.1:4599/auth/login -H 'Content-Type: application/json' -d '{\"username\":\"alice\"}')",
-      "Bash(pkill -f \"tsx __curlcheck\")"
+      "Bash(pkill -f \"tsx __curlcheck\")",
+      "Bash(curl -s -o /tmp/claude-1000/-home-bara-afanah-Desktop-blog/87b2e8f4-7f58-4b38-a7b6-a3aa03f9b7ba/scratchpad/o.txt -w 'HTTP %{http_code}\\\\n' -X PATCH http://localhost:4599/articles/1 -H 'Content-Type: application/json' -H 'Authorization: Bearer faketoken' -d '{\"title\":\"عنوان معدّل فقط\"}')",
+      "Bash(curl -s -o /tmp/claude-1000/-home-bara-afanah-Desktop-blog/87b2e8f4-7f58-4b38-a7b6-a3aa03f9b7ba/scratchpad/o2.txt -w 'HTTP %{http_code}\\\\n' -X PUT http://localhost:4599/articles/1 -H 'Content-Type: application/json' -H 'Authorization: Bearer faketoken' -d '{\"title\":\"عنوان معدّل فقط\"}')",
+      "Bash(curl -s -w '\\\\nHTTP %{http_code}\\\\n' -X PATCH http://localhost:4599/articles/1 -H 'Content-Type: application/json' -H 'Authorization: Bearer faketoken' -d '{\"title\":\"عنوان معدّل فقط\"}')",
+      "Bash(curl -s -o /dev/null -w 'HTTP %{http_code}\\\\n' -X PUT http://localhost:4599/articles/1 -H 'Content-Type: application/json' -H 'Authorization: Bearer faketoken' -d '{\"title\":\"x\"}')",
+      "Bash(curl -sS -I http://localhost:4599/articles)",
+      "Bash(curl -sS -o /dev/null -D - http://localhost:4599/articles/allarticles)",
+      "Bash(curl -sS -I http://localhost:4599/auth/login)",
+      "Bash(curl -sS -o /dev/null -D - -X POST http://localhost:4599/auth/login -H 'Content-Type: application/json' -d '{\"username\":\"bara\",\"password\":\"whatever\"}')",
+      "Bash(curl -sS -w \"\\\\nHTTP %{http_code}\\\\n\" http://localhost:4599/nonexistent)",
+      "Bash(curl -sS -o /dev/null -D - http://localhost:4599/nonexistent)",
+      "Bash(npm test *)"
     ]
   }
 }
