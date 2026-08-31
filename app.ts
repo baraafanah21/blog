@@ -6,6 +6,7 @@ import { generalLimiter } from "./middleware/rateLimiters";
 import helmet from "helmet";
 import AppError from "./utils/AppError";
 import cors from "cors";
+import requestId from "./middleware/requestId";
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") ?? [];
 
@@ -18,7 +19,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
-
+app.use(requestId);
 app.use(generalLimiter);
 app.use(express.json({ limit: "10kb" }));
 app.use("/auth", authRoutes);
